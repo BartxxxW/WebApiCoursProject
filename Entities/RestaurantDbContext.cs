@@ -8,7 +8,11 @@ namespace WebApplication44Udemy.Entities
 {
     public class RestaurantDbContext : DbContext
     {
-        private string _connectionString = "Server=(localdb)\\mssqllocaldb;Database=RestaurantDb;Trusted_Connection=True;";
+        
+        public RestaurantDbContext(DbContextOptions<RestaurantDbContext> options):base(options)
+        {
+
+        }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Dish> Dishes { get; set; }
         public DbSet<Adress> Adresses { get; set; }
@@ -31,13 +35,7 @@ namespace WebApplication44Udemy.Entities
             modelBuilder.Entity<Adress>().Property(a => a.Street).IsRequired().HasMaxLength(50);
 
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_connectionString);
-           
-
-        }
-        
+       
 
     }
 }

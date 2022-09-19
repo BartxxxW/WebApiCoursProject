@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,6 +18,12 @@ namespace WebApplication44Udemy
         { 
             if(_dbContext.Database.CanConnect())
             {
+                var pendingMigration= _dbContext.Database.GetPendingMigrations();
+                if(pendingMigration!=null && pendingMigration.Any())
+                {
+                    _dbContext.Database.Migrate();
+                }
+
                 if (!_dbContext.Roles.Any())
                 {
                     var roles = GetRoles();

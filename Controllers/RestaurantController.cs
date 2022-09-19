@@ -43,8 +43,9 @@ namespace WebApplication44Udemy.Controllers
             return Ok("Restaurant Updated");
         }
 
+        //[Authorize(Policy = "AtLeast2Restaurants")]
         [HttpGet]
-        [Authorize(Policy = "AtLeast2Restaurants")]
+        [AllowAnonymous]
         public ActionResult<IEnumerable<RestaurantDto>> GetAll([FromQuery] RestaurantQuery query)
         {
             //var resultAdress= await _dbContext.Adresses.ToListAsync();
