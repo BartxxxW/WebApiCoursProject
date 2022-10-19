@@ -21,6 +21,11 @@ jobs:
         run: dotnet build --no-restore
       - name: Publish
         run: dotnet publish ./WebApiCoursProject/WebApplication44Udemy.csproj -c Release -o ${{ env.DOTNET_ROOT}}/api
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+         name: api-artefact
+         path: ${{ env.DOTNET_ROOT}}/api
 
   deploy-dev:
     runs-on: ubuntu-latest
