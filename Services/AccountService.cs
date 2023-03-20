@@ -47,7 +47,7 @@ namespace WebApplication44Udemy.Services
             var hashedPassword = _passwordHasher.HashPassword(newUser,dto.Password);
             newUser.PasswordHash = hashedPassword;
             _context.Users.Add(newUser);
-            _context.SaveChanges();
+            _context.SaveChanges();  
         }
         public string GenerateJwt(LoginDto dto)
         {

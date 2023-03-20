@@ -33,8 +33,7 @@ namespace WebApplication44Udemy.Controllers
         {
             var userId = int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier).Value);
             var id = _restaurantService.CreateRestaurant(dto);
-
-            return Created($"restaurant/{id}", null);
+                        return Created($"restaurant/{id}", null);
         }
         [HttpPut("{id}")]
         public ActionResult UpdateRestaurant([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
